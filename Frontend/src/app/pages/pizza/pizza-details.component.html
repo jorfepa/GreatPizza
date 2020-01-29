@@ -2,27 +2,24 @@
     <div class="card card-body">
         <h3>{{pizza.Name}}</h3>
         <h5>Description: {{pizza.Description}}</h5>
+        <button class="btn btn-primary w-25" [routerLink]="['/list-toppings', pizza._id]">
+            Add Topping
+        </button>
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <h4>Toppings</h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let topping of pizza.Toppings">
-                            <th scope="row">1</th>
-                            <td>{{topping.Name}}</td>
+                        <tr *ngFor="let topping of toppings">
+                            <td>{{topping.name}}</td>
                             <td>
-                                <button class="btn btn-primary" [routerLink]="['/pizza-details', pizza._id]">
-                                    Add Topping
-                                </button>
-
-                                <button (click)="deletePizza(pizza)" class="btn btn-secondary">
+                                <button (click)="deleteTopping(topping)" class="btn btn-secondary">
                                     Delete
                                 </button>
                             </td>

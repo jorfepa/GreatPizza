@@ -1,24 +1,33 @@
-<h2>List of Topping</h2>
-<button *ngIf="!id" [routerLink]="['/topping']" class="btn btn-primary">
-    New Topping
+<div class="m-3">
+    <h2 *ngIf="!id">List of Toppings</h2>
+    <h2 *ngIf="id">List of Available Topping</h2>
+    <button *ngIf="!id" [routerLink]="['/topping']" class="btn btn-primary">
+        New Topping
+    </button>
+</div>
+<div class="card m-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let topping of toppingsList">
+                <td>{{topping.name}}</td>
+                <td>
+                    <button *ngIf="id" (click)="selectTopping(topping)" class="btn btn-primary">
+                        Seleccionar
+                    </button>
+                    <button *ngIf="!id" (click)="deleteTopping(topping)" class="btn btn-secondary">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button [routerLink]="['/pizza-details', id]" *ngIf="id" class="btn btn-secondary ml-3">
+    Cancel
 </button>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let topping of toppingsList">
-            <td>{{topping.name}}</td>
-            <td>
-                <button *ngIf="id" (click)="selectTopping(topping)" class="btn btn-primary">
-                    Seleccionar
-                </button>
-                <button *ngIf="!id" (click)="deleteTopping(topping)" class="btn btn-secondary">
-                    Delete
-                </button>
-            </td>
-        </tr>
-    </tbody>
