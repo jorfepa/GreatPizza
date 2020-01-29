@@ -14,7 +14,7 @@ router.get('/getToppings/', async (req, res) => {
 router.post('/addTopping/', async (req, res) => {
     const db = await connect();
     const pizza = {
-        name: req.body.name
+        name: req.body.Name
     }
     const result = db.collection('topping').insertOne(pizza);
     res.json((await result).ops[0]);
@@ -23,7 +23,7 @@ router.post('/addTopping/', async (req, res) => {
 router.delete('/deleteTopping/:id', async (req, res) => {
     const { id } = req.params;
     const db = await connect();
-    const result = await db.collection('topping').remove({ _id: ObjectID(id) });
+    const result = await db.collection('topping').deleteOne({ _id: ObjectID(id) });
     res.json({
         message: `Topping ${id} Deleted`,
         result
